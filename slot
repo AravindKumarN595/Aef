@@ -65,7 +65,7 @@
 </div>
 
 <script>
-  const SCRIPT_URL = 'https://docs.google.com/spreadsheets/d/12MnCC1Qc_GN4VDUsvabavoGqra5QzTVV_6EqiwiwNRQ/edit?usp=sharing'; // Replace with your actual URL
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzTsz6n5078rSdKXbW-smY6W4pnphZjYY3EeIsLHBxLKA_eISxCG3GJp7DceVYa4tpU/exec'; // Replace with your actual URL
 
   function submitForm() {
     const slot = document.getElementById("slot").value;
