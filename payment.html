@@ -1,70 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Payment - AEF Registration</title>
+  <title>Payment</title>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
       padding: 20px;
-      background: #f9f9f9;
     }
     .container {
       max-width: 450px;
       margin: auto;
-      background: #fff;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       padding: 20px;
       text-align: center;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
     .qr {
+      margin: 15px 0;
+    }
+    .details-box {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 10px;
       margin: 20px 0;
+      text-align: left;
     }
     button {
-      padding: 12px 20px;
-      font-size: 1rem;
-      background: #28a745;
-      color: #fff;
+      padding: 10px 25px;
+      background-color: #28a745;
       border: none;
-      border-radius: 6px;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
       cursor: pointer;
     }
-    .details {
-      text-align: left;
-      margin-top: 25px;
-      font-size: 0.95rem;
-      background: #e0f7fa;
+    button:hover {
+      background-color: #218838;
+    }
+    .upi-box {
+      background-color: #e9ecef;
       padding: 10px;
-      border-left: 5px solid #0078d4;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Pay Registration Fee</h2>
-    <p>Scan the QR below or use the UPI ID to pay ₹200</p>
-    <div class="qr">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=9110220118@ibl&pn=AEF%20College&am=200&cu=INR" alt="QR Code" width="220" height="220"/>
-    </div>
-    <p><strong>UPI ID:</strong> <code>9110220118@ibl</code></p>
-    <button onclick="continueToCourses()">I Have Paid</button>
 
-    <div class="details">
+  <div class="container">
+    <h2>Pay & Confirm</h2>
+
+    <div class="details-box">
       <strong>Test Details:</strong><br>
-      Mode: Offline (at Campus)<br>
-      Duration: 60 minutes<br>
-      Eligibility: Class 10 passed/appearing<br>
-      Courses: PCMB / PCMC (PU1)<br>
+      📍 Mode: Offline (at Campus)<br>
+      ⏱ Duration: 60 minutes<br>
+      ✔ Eligibility: Class 10 passed or appearing<br>
+      ✔ Applicable for PCMB / PCMC (PU1)<br>
       🎓 Scholarships valid for 30 days after registration.
     </div>
+
+    <p><strong>Amount to Pay: ₹200</strong></p>
+    
+    <div class="qr">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=9110220118@ibl&pn=AEFPUCOLLEGE&am=200&cu=INR&mode=02&purpose=00" alt="UPI QR" width="200" height="200">
+    </div>
+
+    <p class="upi-box">UPI ID: 9110220118@ibl</p>
+
+    <p>Scan the QR above or pay using the UPI ID.</p>
+
+    <form action="course.html">
+      <button type="submit">I Have Paid</button>
+    </form>
   </div>
 
-  <script>
-    function continueToCourses() {
-      window.location.href = "courses.html";
-    }
-  </script>
 </body>
 </html>
