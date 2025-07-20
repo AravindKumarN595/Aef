@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Course Selection</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f0f8ff; padding: 20px; }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 { text-align: center; color: #1a73e8; }
+    .test-details {
+      background: #fff8e1;
+      padding: 15px;
+      border-left: 5px solid #f4b400;
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    select {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+    button {
+      width: 100%;
+      background: #1a73e8;
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #1558b0;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Select Your Course</h2>
+
+  <div class="test-details">
+    <strong>Test Details:</strong><br>
+    🏫 Mode: Offline (at Campus)<br>
+    ⏱ Duration: 60 minutes<br>
+    🎓 Eligibility: Class 10 passed or appearing<br>
+    🧪 Applicable for PCMB / PCMC (PU1)<br>
+    🎁 Scholarships valid for 30 days after registration
+  </div>
+
+  <label for="course">Choose your course:</label>
+  <select id="course" required>
+    <option value="">-- Select a course --</option>
+    <option value="PU1 PCMB">PU1 PCMB</option>
+    <option value="PU1 PCMC">PU1 PCMC</option>
+  </select>
+
+  <button onclick="goToSlot()">Continue</button>
+</div>
+
+<script>
+  function goToSlot() {
+    const course = document.getElementById("course").value;
+    if (!course) {
+      alert("Please select a course.");
+      return;
+    }
+
+    // Save to sessionStorage for use in final form submission
+    sessionStorage.setItem("course", course);
+    window.location.href = "slot.html";
+  }
+</script>
+
+</body>
+</html>
