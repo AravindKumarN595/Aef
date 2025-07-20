@@ -65,7 +65,7 @@
 </div>
 
 <script>
-  const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL'; // Replace with your actual URL
+  const SCRIPT_URL = 'https://docs.google.com/spreadsheets/d/12MnCC1Qc_GN4VDUsvabavoGqra5QzTVV_6EqiwiwNRQ/edit?usp=sharing'; // Replace with your actual URL
 
   function submitForm() {
     const slot = document.getElementById("slot").value;
