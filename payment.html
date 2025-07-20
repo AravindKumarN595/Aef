@@ -3,71 +3,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Payment</title>
+  <title>Payment - AEF Registration</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #fff2f2; padding: 20px; }
-    .container { max-width: 500px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    h2 { text-align: center; color: #d32f2f; }
-    .test-details { background: #fff8e1; padding: 15px; border-left: 5px solid #f4b400; margin-bottom: 20px; font-size: 14px; line-height: 1.6; }
-    .payment-box {
-      background: #fef4e7;
-      border: 2px dashed #ff9800;
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+    .container {
+      max-width: 450px;
+      margin: auto;
+      background: #fff;
       padding: 20px;
       text-align: center;
-      font-size: 16px;
-      margin-bottom: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
-    .upi-id {
-      font-weight: bold;
-      font-size: 18px;
-      color: #333;
-      background: #fff3cd;
-      display: inline-block;
-      padding: 10px 15px;
-      margin-top: 10px;
-      border-radius: 8px;
+    .qr {
+      margin: 20px 0;
     }
     button {
-      width: 100%;
+      padding: 12px 20px;
+      font-size: 1rem;
       background: #28a745;
-      color: white;
+      color: #fff;
       border: none;
-      padding: 14px;
       border-radius: 6px;
-      font-size: 16px;
-      margin-top: 20px;
+      cursor: pointer;
     }
-    button:hover { background: #1e7e34; cursor: pointer; }
+    .details {
+      text-align: left;
+      margin-top: 25px;
+      font-size: 0.95rem;
+      background: #e0f7fa;
+      padding: 10px;
+      border-left: 5px solid #0078d4;
+    }
   </style>
 </head>
 <body>
+  <div class="container">
+    <h2>Pay Registration Fee</h2>
+    <p>Scan the QR below or use the UPI ID to pay ₹200</p>
+    <div class="qr">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=9110220118@ibl&pn=AEF%20College&am=200&cu=INR" alt="QR Code" width="220" height="220"/>
+    </div>
+    <p><strong>UPI ID:</strong> <code>9110220118@ibl</code></p>
+    <button onclick="continueToCourses()">I Have Paid</button>
 
-<div class="container">
-  <h2>Pay & Confirm</h2>
-
-  <div class="test-details">
-    <strong>Test Details:</strong><br>
-    🏫 Mode: Offline (at Campus)<br>
-    ⏱ Duration: 60 minutes<br>
-    🎓 Eligibility: Class 10 passed or appearing<br>
-    🧪 Applicable for PCMB / PCMC (PU1)<br>
-    🎁 Scholarships valid for 30 days after registration
+    <div class="details">
+      <strong>Test Details:</strong><br>
+      Mode: Offline (at Campus)<br>
+      Duration: 60 minutes<br>
+      Eligibility: Class 10 passed/appearing<br>
+      Courses: PCMB / PCMC (PU1)<br>
+      🎓 Scholarships valid for 30 days after registration.
+    </div>
   </div>
 
-  <div class="payment-box">
-    Please pay the registration fee via UPI to the ID below:<br/>
-    <div class="upi-id">9110220118@ibl</div><br/><br/>
-    After payment, click the button to proceed.
-  </div>
-
-  <button onclick="proceed()">I Have Paid</button>
-</div>
-
-<script>
-  function proceed() {
-    window.location.href = 'course.html';
-  }
-</script>
-
+  <script>
+    function continueToCourses() {
+      window.location.href = "courses.html";
+    }
+  </script>
 </body>
 </html>
