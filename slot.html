@@ -64,7 +64,7 @@
 </div>
 
 <script>
-  const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL'; // Replace with your actual URL
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby_5Uza5wel2Zfb6fEr1B6rtuC6AE84FIzX0bdRiHyqll-WUK1BNCNdEh688-ovxBfk/exec'; // Replace with your actual URL
 
   function submitForm() {
     const slot = document.getElementById("slot").value;
@@ -82,7 +82,7 @@
       return;
     }
 
-    fetch('https://script.google.com/macros/s/AKfycby_5Uza5wel2Zfb6fEr1B6rtuC6AE84FIzX0bdRiHyqll-WUK1BNCNdEh688-ovxBfk/exec', {
+    fetch(SCRIPT_URL, {
       method: 'POST',
       body: formData,
       mode: 'no-cors'
