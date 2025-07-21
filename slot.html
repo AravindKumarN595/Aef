@@ -84,12 +84,8 @@
 
     fetch('https://script.google.com/macros/s/AKfycby_5Uza5wel2Zfb6fEr1B6rtuC6AE84FIzX0bdRiHyqll-WUK1BNCNdEh688-ovxBfk/exec', {
       method: 'POST',
-      body: new URLSearchParams({
-        name: name,
-        phone: phone,
-        course: course,
-        slot: slot
-      })
+      body: formData,
+      mode: 'no-cors'
     })
     .then(response => {
       if (response.ok) {
