@@ -2,37 +2,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Select Slot</title>
   <style>
-    body { font-family: Arial; padding: 20px; }
-    .container { max-width: 400px; margin: auto; }
-    label, select, button { display: block; margin: 15px 0; width: 100%; }
-    .test-details {
-      border: 1px solid #ccc;
-      padding: 10px;
-      background: #f9f9f9;
+    body {
+      background-color: #f4f4f4;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 60px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
       margin-bottom: 20px;
     }
+
+    .test-details {
+      background: #f0f0f0;
+      padding: 12px;
+      font-size: 14px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: 500;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
   </style>
 </head>
 <body>
   <div class="container">
+    <h2>Choose Slot</h2>
+
     <div class="test-details">
-      <strong>Test Details:</strong><br>
-      Mode: Offline (at Campus)<br>
-      Duration: 60 minutes<br>
-      Eligibility: ✔ Class 10 passed or appearing students<br>
-      Applicable for: PCMB / PCMC (PU1)<br>
-      🎓 Scholarships valid for 30 days after registration.
+      <strong>Test Details</strong><br />
+      Mode: <strong>Offline (at Campus)</strong><br />
+      Duration: <strong>60 minutes</strong><br />
+      Eligibility: ✔ Class 10 passed or appearing students<br />
+      Applicable for: <strong>PCMB / PCMC (PU1)</strong><br />
+      🎓 Scholarships valid for 30 days after registration
     </div>
 
-    <label for="slot">Select Your Preferred Slot:</label>
+    <label for="slot">Select a Slot:</label>
     <select id="slot" required>
       <option value="">-- Select a Slot --</option>
-      <option value="10:00 AM">210:00 AM</option>
-      <option value="12:00 PM">212:00 PM</option>
-      <option value="2:00 PM">2:00 PM</option>
+      <option value="10:00 - 11:00 AM">10:00 - 11:00 AM</option>
+      <option value="12:00 - 1:00 PM">12:00 - 1:00 PM</option>
     </select>
 
     <button onclick="submitData()">Submit Registration</button>
@@ -51,15 +103,15 @@
       }
 
       if (!name || !phone || !course) {
-        alert("Missing registration data. Please restart.");
+        alert("Incomplete data. Please start from the beginning.");
         window.location.href = "index.html";
         return;
       }
 
       sessionStorage.setItem("slot", slot);
 
-      // Google Sheets script URL
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbzuhmdV5uwpcgrpzGsw1I04maY-9n7uoCVxP9OpUM60HkAR7jJ8uPmGdljjTBBRbQ/exec';
+      // Replace this with your actual Google Apps Script URL
+      const scriptURL = "https://script.google.com/macros/s/AKfycbzuhmdV5uwpcgrpzGsw1I04maY-9n7uoCVxP9OpUM60HkAR7jJ8uPmGdljjTBBRbQ/exec";
 
       fetch(scriptURL, {
         method: 'POST',
@@ -74,12 +126,12 @@
         if (response.ok) {
           window.location.href = "thankyou.html";
         } else {
-          alert("Error submitting data. Try again.");
+          alert("Failed to submit. Try again.");
         }
       })
       .catch(error => {
-        alert("Submission failed.");
-        console.error('Error!', error.message);
+        alert("Error while submitting data.");
+        console.error(error);
       });
     }
   </script>
