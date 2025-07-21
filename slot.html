@@ -1,139 +1,110 @@
-<!-- slot.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Select Slot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Slot Selection</title>
   <style>
-    body {
-      background-color: #f4f4f4;
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
+    body { font-family: Arial, sans-serif; background: #f0f8ff; padding: 20px; }
     .container {
-      max-width: 400px;
-      margin: 60px auto;
-      background: #fff;
+      max-width: 500px;
+      margin: auto;
+      background: white;
       padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
+    h2 { text-align: center; color: #1a73e8; }
     .test-details {
-      background: #f0f0f0;
-      padding: 12px;
+      background: #fff8e1;
+      padding: 15px;
+      border-left: 5px solid #f4b400;
+      margin-bottom: 20px;
       font-size: 14px;
-      border-radius: 8px;
-      margin-bottom: 20px;
+      line-height: 1.6;
     }
-
-    label {
-      font-weight: 500;
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    select {
+    select, button {
       width: 100%;
-      padding: 10px;
+      padding: 14px;
+      font-size: 16px;
+      margin: 10px 0;
       border-radius: 6px;
-      border: 1px solid #ccc;
-      margin-bottom: 20px;
-      font-size: 15px;
     }
-
+    select { border: 1px solid #ccc; }
     button {
-      width: 100%;
-      padding: 12px;
-      background-color: #007BFF;
+      background-color: #1a73e8;
       color: white;
       border: none;
-      font-size: 16px;
-      border-radius: 6px;
-      cursor: pointer;
     }
-
-    button:hover {
-      background-color: #0056b3;
-    }
-
+    button:hover { background-color: #1558b0; cursor: pointer; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Choose Slot</h2>
 
-    <div class="test-details">
-      <strong>Test Details</strong><br />
-      Mode: <strong>Offline (at Campus)</strong><br />
-      Duration: <strong>60 minutes</strong><br />
-      Eligibility: ✔ Class 10 passed or appearing students<br />
-      Applicable for: <strong>PCMB / PCMC (PU1)</strong><br />
-      🎓 Scholarships valid for 30 days after registration
-    </div>
+<div class="container">
+  <h2>Select a Test Slot</h2>
 
-    <label for="slot">Select a Slot:</label>
-    <select id="slot" required>
-      <option value="">-- Select a Slot --</option>
-      <option value="10:00 - 11:00 AM">10:00 - 11:00 AM</option>
-      <option value="12:00 - 1:00 PM">12:00 - 1:00 PM</option>
-    </select>
-
-    <button onclick="submitData()">Submit Registration</button>
+  <div class="test-details">
+    <strong>Test Details:</strong><br>
+    🏫 Mode: Offline (at Campus)<br>
+    ⏱ Duration: 60 minutes<br>
+    🎓 Eligibility: Class 10 passed or appearing<br>
+    🧪 Applicable for PCMB / PCMC (PU1)<br>
+    🎁 Scholarships valid for 30 days after registration
   </div>
 
-  <script>
-    function submitData() {
-      const name = sessionStorage.getItem("name");
-      const phone = sessionStorage.getItem("phone");
-      const course = sessionStorage.getItem("course");
-      const slot = document.getElementById("slot").value;
+  <label for="slot">Choose your slot:</label>
+  <select id="slot">
+    <option value="">-- Select a slot --</option>
+    <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
+    <option value="12:00 PM - 1:00 PM">12:00 PM - 1:00 PM</option>
+  </select>
 
-      if (!slot) {
-        alert("Please select a slot.");
-        return;
-      }
+  <button onclick="submitForm()">Submit Registration</button>
+</div>
 
-      if (!name || !phone || !course) {
-        alert("Incomplete data. Please start from the beginning.");
-        window.location.href = "index.html";
-        return;
-      }
+<script>
+  const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL'; // Replace with your actual URL
 
-      sessionStorage.setItem("slot", slot);
-
-      // Replace this with your actual Google Apps Script URL
-      const scriptURL = "https://script.google.com/macros/s/AKfycbzuhmdV5uwpcgrpzGsw1I04maY-9n7uoCVxP9OpUM60HkAR7jJ8uPmGdljjTBBRbQ/exec";
-
-      fetch(scriptURL, {
-        method: 'POST',
-        body: new URLSearchParams({
-          name: name,
-          phone: phone,
-          course: course,
-          slot: slot
-        })
-      })
-      .then(response => {
-        if (response.ok) {
-          window.location.href = "thankyou.html";
-        } else {
-          alert("Failed to submit. Try again.");
-        }
-      })
-      .catch(error => {
-        alert("Error while submitting data.");
-        console.error(error);
-      });
+  function submitForm() {
+    const slot = document.getElementById("slot").value;
+    if (!slot) {
+      alert("Please select a slot.");
+      return;
     }
-  </script>
+
+    const name = sessionStorage.getItem("name");
+    const phone = sessionStorage.getItem("phone");
+    const course = sessionStorage.getItem("course");
+
+    if (!name || !phone || !course) {
+      alert("Something went wrong. Please restart the registration.");
+      return;
+    }
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: new URLSearchParams({
+        name: name,
+        phone: phone,
+        course: course,
+        slot: slot
+      })
+    })
+    .then(response => {
+      if (response.ok) {
+        alert("✅ Registration successful!");
+        window.location.href = "thankyou.html"; // Redirect or show success page
+      } else {
+        alert("⚠ Submission failed.");
+      }
+    })
+    .catch(err => {
+      alert("⚠ Error submitting form.");
+      console.error(err);
+    });
+  }
+</script>
+
 </body>
 </html>
