@@ -42,18 +42,13 @@
 </div>
 
 <script>
- google.script.run
-    .withSuccessHandler(populateSlots)
-    .getSlotOptions();
+  function storeNamePhone() {
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
 
-  function populateSlots(slots) {
-    const sel = document.getElementById('slot');
-    slots.forEach(slot => {
-      const opt = document.createElement('option');
-      opt.value = opt.text = slot;
-      sel.appendChild(opt);
-    });
-  }
+    localStorage.setItem('userName', name);
+    localStorage.setItem('userPhone', phone);
+
     window.location.href = 'otp.html';
   }
 </script>
