@@ -72,6 +72,10 @@
       document.getElementById('captchaInput').value = '';
     }
   }
+  sessionStorage.setItem("name", name);
+  sessionStorage.setItem("phone", phone);
+  sessionStorage.setItem("course", course);
+
 
   // On page load
   generateCaptcha();
