@@ -62,44 +62,44 @@
 
   <button onclick="submitForm()">Submit Registration</button>
 </div>
+  <script>
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby_5Uza5wel2Zfb6fEr1B6rtuC6AE84FIzX0bdRiHyqll-WUK1BNCNdEh688-ovxBfk/exec';
 
-<script>
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby_5Uza5wel2Zfb6fEr1B6rtuC6AE84FIzX0bdRiHyqll-WUK1BNCNdEh688-ovxBfk/exec'; // Replace with your actual URL
+  function submitForm() {
+    const slot = document.getElementById("slot").value;
+    if (!slot) {
+      alert("Please select a slot.");
+      return;
+    }
 
-  function submitForm() {
-    const slot = document.getElementById("slot").value;
-    if (!slot) {
-      alert("Please select a slot.");
-      return;
-    }
+    const name = sessionStorage.getItem("name");
+    const phone = sessionStorage.getItem("phone");
+    const course = sessionStorage.getItem("course");
 
-    const name = sessionStorage.getItem("name");
-    const phone = sessionStorage.getItem("phone");
-    const course = sessionStorage.getItem("course");
+    if (!name || !phone || !course) {
+      alert("Something went wrong. Please restart the registration.");
+      return;
+    }
 
-    if (!name || !phone || !course) {
-      alert("Something went wrong. Please restart the registration.");
-      return;
-    }
+    const formData = new FormData();
+    formData.append("Name", name);
+    formData.append("Phone", phone);
+    formData.append("Course", course);
+    formData.append("Slot", slot);
 
-    fetch(SCRIPT_URL, {
-      method: 'POST',
-      body: formData,
-      mode: 'no-cors'
-    })
-    .then(response => {
-      if (response.ok) {
-        alert("✅ Registration successful!");
-        window.location.href = "thankyou.html"; // Redirect or show success page
-      } else {
-        alert("⚠ Submission failed.");
-      }
-    })
-    .catch(err => {
-      alert("⚠ Error submitting form.");
-      console.error(err);
-    });
-  }
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: formData,
+      mode: 'no-cors'
+    })
+    .then(() => {
+      window.location.href = "thankyou.html";
+    })
+    .catch(err => {
+      alert("⚠ Error submitting form.");
+      console.error(err);
+    });
+  }
 </script>
 
 </body>
