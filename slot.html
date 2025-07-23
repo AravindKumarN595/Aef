@@ -89,6 +89,7 @@ function submitForm() {
   fetch(SCRIPT_URL, {
     method: 'POST',
     body: formData,
+    mode: 'no-cors'
   })
   .then(() => {
     sessionStorage.setItem("slot", slot); // 🔥 Important line
