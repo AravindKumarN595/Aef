@@ -64,8 +64,10 @@
 </div>
   <script>
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby_5Uza5wel2Zfb6fEr1B6rtuC6AE84FIzX0bdRiHyqll-WUK1BNCNdEh688-ovxBfk/exec';
+
 function submitForm() {
   const slot = document.getElementById("slot").value;
+
   if (!slot) {
     alert("Please select a slot.");
     return;
@@ -86,19 +88,18 @@ function submitForm() {
   formData.append("Course", course);
   formData.append("Slot", slot);
 
+  // ✅ Save slot locally before redirect
+  localStorage.setItem("slot", slot);
+
+  // ✅ Fire-and-forget submission (no need to wait)
   fetch(SCRIPT_URL, {
     method: 'POST',
     body: formData,
     mode: 'no-cors'
-  })
-  .then(() => {
-    localStorage.setItem("slot", slot); // 🔥 Important line
-    window.location.href = "thankyou.html";
-  })
-  .catch(err => {
-    alert("⚠ Error submitting form.");
-    console.error(err);
   });
+
+  // ✅ Immediately redirect to thank you page
+  window.location.href = "thankyou.html";
 }
 </script>
 
