@@ -62,8 +62,8 @@
 
   <button onclick="submitForm()">Submit Registration</button>
 </div>
-  <script>
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby_5Uza5wel2Zfb6fEr1B6rtuC6AE84FIzX0bdRiHyqll-WUK1BNCNdEh688-ovxBfk/exec';
+  <script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby_5Uza5wel2Zfb6fEr1B6rtuC6AE84FIzX0bdRiHyqll-WUK1BNCNdEh688-ovxBfk/exec';
 
 function submitForm() {
   const slot = document.getElementById("slot").value;
@@ -73,12 +73,13 @@ function submitForm() {
     return;
   }
 
-  const name = localStorage.getItem("name");
-  const phone = localStorage.getItem("phone");
+  const name = localStorage.getItem("userName");
+  const phone = localStorage.getItem("userPhone");
   const course = localStorage.getItem("course");
 
   if (!name || !phone || !course) {
-    alert("Something went wrong. Please restart the registration.");
+    alert("Missing details. Please restart registration.");
+    window.location.href = "index.html";
     return;
   }
 
@@ -88,17 +89,10 @@ function submitForm() {
   formData.append("Course", course);
   formData.append("Slot", slot);
 
-  // ✅ Save slot locally before redirect
   localStorage.setItem("slot", slot);
 
-  // ✅ Fire-and-forget submission (no need to wait)
-  fetch(SCRIPT_URL, {
-    method: 'POST',
-    body: formData,
-    mode: 'no-cors'
-  });
+  fetch(SCRIPT_URL, { method: 'POST', body: formData, mode: 'no-cors' });
 
-  // ✅ Immediately redirect to thank you page
   window.location.href = "thankyou.html";
 }
 </script>
