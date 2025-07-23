@@ -65,10 +65,19 @@
   </div>
 
   <script>
-  console.log("NAME:", localStorage.getItem('name'));
-  console.log("PHONE:", localStorage.getItem('phone'));
-  console.log("COURSE:", localStorage.getItem('course'));
-  console.log("SLOT:", localStorage.getItem('slot'));
+    
+   const name = localStorage.getItem('name');
+   const phone = localStorage.getItem('phone');
+   const course = localStorage.getItem('course');
+   const slot = localStorage.getItem('slot');
+   document.getElementById('name').textContent = name || "N/A";
+   document.getElementById('phone').textContent = phone || "N/A";
+   document.getElementById('course').textContent = course || "N/A";
+   document.getElementById('slot').textContent = slot || "N/A";
+   console.log("NAME:", localStorage.getItem('name'));
+   console.log("PHONE:", localStorage.getItem('phone'));
+   console.log("COURSE:", localStorage.getItem('course'));
+   console.log("SLOT:", localStorage.getItem('slot'));
   </script>
 </body>
 </html>
