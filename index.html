@@ -51,7 +51,7 @@
 
     window.location.href = 'otp.html';
   }
-  document.getElementById('slotForm').addEventListener('submit', async function (e) {
+document.getElementById('slotForm').addEventListener('submit', async function (e) {
   e.preventDefault();
 
   const formData = new FormData(this);
@@ -72,7 +72,6 @@
         "Content-Type": "application/json"
       }
     });
-    
 
     // ✅ Redirect to thank you page
    // window.location.href = "thankyou.html"; // or use "payment.html" if there's a payment step
@@ -86,4 +85,4 @@
 </script>
 
 </body>
-</html> this is the index code what should be the changes in the code
+</html>
