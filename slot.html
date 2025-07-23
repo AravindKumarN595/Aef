@@ -71,9 +71,9 @@ function submitForm() {
     return;
   }
 
-  const name = sessionStorage.getItem("name");
-  const phone = sessionStorage.getItem("phone");
-  const course = sessionStorage.getItem("course");
+  const name = localStorage.getItem("name");
+  const phone = localStorage.getItem("phone");
+  const course = localStorage.getItem("course");
 
   if (!name || !phone || !course) {
     alert("Something went wrong. Please restart the registration.");
@@ -92,7 +92,7 @@ function submitForm() {
     mode: 'no-cors'
   })
   .then(() => {
-    sessionStorage.setItem("slot", slot); // 🔥 Important line
+    localStorage.setItem("slot", slot); // 🔥 Important line
     window.location.href = "thankyou.html";
   })
   .catch(err => {
