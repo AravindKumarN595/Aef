@@ -30,15 +30,24 @@
     🎁 Scholarships valid for 30 days after registration
   </div>
 
-  <form onsubmit="storeNamePhone(); return false;">
-    <label for="name">Full Name:</label>
-    <input type="text" id="name" required />
+<form id="slotForm">
+  <label>Name:</label>
+  <input type="text" name="name" required>
 
-    <label for="phone">Phone Number:</label>
-    <input type="tel" id="phone" pattern="[6-9]{1}[0-9]{9}" required />
+  <label>Phone:</label>
+  <input type="tel" name="phone" required>
 
-    <button type="submit">Next</button>
-  </form>
+  <label>Course:</label>
+  <input type="text" name="course" required>
+
+  <label>Slot:</label>
+  <select name="slot" required>
+    <option value="10 AM">10 AM</option>
+    <option value="2 PM">2 PM</option>
+  </select>
+
+  <button type="submit">Submit</button>
+</form>
 </div>
 
 <script>
@@ -72,6 +81,7 @@
         "Content-Type": "application/json"
       }
     });
+    
 
     // ✅ Redirect to thank you page
    // window.location.href = "thankyou.html"; // or use "payment.html" if there's a payment step
