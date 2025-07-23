@@ -30,15 +30,15 @@
     🎁 Scholarships valid for 30 days after registration
   </div>
 
-<form id="slotForm">
-  <label>Name:</label>
-  <input type="text" name="name" required>
+  <form onsubmit="storeNamePhone(); return false;">
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" required />
 
-  <label>Phone:</label>
-  <input type="tel" name="phone" required>
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" pattern="[6-9]{1}[0-9]{9}" required />
 
-  <button type="submit">Next</button>
-</form>
+    <button type="submit">Next</button>
+  </form>
 </div>
 
 <script>
@@ -51,37 +51,6 @@
 
     window.location.href = 'otp.html';
   }
-document.getElementById('slotForm').addEventListener('submit', async function (e) {
-  e.preventDefault();
-
-  const formData = new FormData(this);
-  const data = Object.fromEntries(formData.entries());
-
-  // ✅ Save values to localStorage
-  localStorage.setItem("name", data.name || "");
-  localStorage.setItem("phone", data.phone || "");
-  localStorage.setItem("course", data.course || "");
-  localStorage.setItem("slot", data.slot || "");
-  localStorage.setItem("payment", "₹200 Paid");
-
-  try {
-    await fetch("https://script.google.com/macros/s/AKfycby_5Uza5wel2Zfb6fEr1B6rtuC6AE84FIzX0bdRiHyqll-WUK1BNCNdEh688-ovxBfk/exec", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-
-    // ✅ Redirect to thank you page
-   // window.location.href = "thankyou.html"; // or use "payment.html" if there's a payment step
-
-  } catch (error) {
-    alert("Submission failed. Please try again.");
-    console.error("Error:", error);
-  }
-});
-
 </script>
 
 </body>
