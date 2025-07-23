@@ -57,6 +57,13 @@
   const formData = new FormData(this);
   const data = Object.fromEntries(formData.entries());
 
+  // ✅ Save values to localStorage
+  localStorage.setItem("name", data.name || "");
+  localStorage.setItem("phone", data.phone || "");
+  localStorage.setItem("course", data.course || "");
+  localStorage.setItem("slot", data.slot || "");
+  localStorage.setItem("payment", "₹200 Paid");
+
   try {
     await fetch("https://script.google.com/macros/s/AKfycby_5Uza5wel2Zfb6fEr1B6rtuC6AE84FIzX0bdRiHyqll-WUK1BNCNdEh688-ovxBfk/exec", {
       method: "POST",
@@ -66,12 +73,15 @@
       }
     });
 
-   // window.location.href = "payment.html";
+    // ✅ Redirect to thank you page
+   // window.location.href = "thankyou.html"; // or use "payment.html" if there's a payment step
+
   } catch (error) {
     alert("Submission failed. Please try again.");
     console.error("Error:", error);
   }
 });
+
 </script>
 
 </body>
