@@ -77,7 +77,8 @@
       alert("Please select a course.");
       return;
     }
-window.location.href = "slot.html";
+  localStorage.setItem("course", course); // ✅ Save course
+  window.location.href = "slot.html";
   }
 </script>
 
