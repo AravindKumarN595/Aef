@@ -1,107 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Thank You - Registration Complete</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thank You</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px;
-      background: #f4f4f4;
-    }
-    .box {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      width: 90%;
-      max-width: 500px;
+      background: linear-gradient(to right, #e0f7fa, #e1bee7);
+      font-family: Arial, sans-serif;
+      padding: 20px;
       text-align: center;
     }
-    h2 {
-      color: #28a745;
+
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: auto;
     }
-    .details {
-      text-align: left;
-      margin-top: 20px;
+
+    h1 {
+      color: #4a148c;
     }
-    .details p {
-      margin: 8px 0;
-      font-size: 16px;
-    }
-    .test-details {
-      margin-top: 20px;
-      background: #fff9c4;
-      border: 1px solid #f0e68c;
-      padding: 15px;
-      border-radius: 8px;
-      font-size: 14px;
+
+    p {
+      font-size: 18px;
+      color: #333;
     }
   </style>
 </head>
 <body>
-  <div class="box">
-    <h2>🎉 Thank You for Registering!</h2>
-    <p>Your details have been recorded successfully.</p>
-
-    <div class="details">
-      <p><strong>Name:</strong> <span id="name"></span></p>
-      <p><strong>Phone:</strong> <span id="phone"></span></p>
-      <p><strong>Course Selected:</strong> <span id="course"></span></p>
-      <p><strong>Slot Selected:</strong> <span id="slot"></span></p>
-    </div>
-
-    <div class="test-details">
-      <strong>Test Details:</strong><br>
-      📍 Mode: Offline (at Campus)<br>
-      ⏱ Duration: 60 minutes<br>
-      🎯 Eligibility: Class 10 passed or appearing<br>
-      ✅ Applicable for PCMB / PCMC (PU1)<br>
-      🎓 Scholarships valid for 30 days after registration.
-    </div>
+  <div class="container">
+    <h1>Thank You for Registering!</h1>
+    <p id="summary">Loading your details...</p>
   </div>
 
-<div id="thankyouMsg" style="display:none;"></div>
+  <script>
+    // Retrieve data from localStorage
+    const name = localStorage.getItem("name");
+    const phone = localStorage.getItem("phone");
+    const course = localStorage.getItem("course");
+    const slot = localStorage.getItem("slot");
+    const payment = localStorage.getItem("payment");
 
-<script>
-  document.getElementById("slotForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+    // Display on page
+    document.getElementById("summary").innerHTML = `
+      <strong>Name:</strong> ${name}<br>
+      <strong>Phone Number:</strong> ${phone}<br>
+      <strong>Course:</strong> ${course}<br>
+      <strong>Slot:</strong> ${slot}<br>
+      <strong>Payment:</strong> ₹${payment || "200"} Paid Successfully
+    `;
 
-    const form = e.target;
-    const data = {
-      name: form.name.value.trim(),
-      phone: form.phone.value.trim(),
-      email: form.email.value.trim(),
-      slot: form.slot.value
-    };
-
-    fetch("https://script.google.com/macros/s/AKfycby3D73l9oIeD1guYfrlF9hMYIrhBG9yj0S1sKKrVq-3HL0FNt6nC-7Xm9SWkv6zHtGp/exec", {
+    // Send to Google Sheet
+    fetch("https://script.google.com/macros/s/AKfycbxMopS1tm-JK05BGezvQq617MJj2gCnsIxxdISFZAdLaA1fBCqB49w79da_XGbJ0c6p/exec", {
       method: "POST",
-      body: JSON.stringify(data),
+      body: JSON.stringify({ name, phone, course, slot, payment: payment || "200" }),
       headers: {
         "Content-Type": "application/json"
       }
-    })
-    .then(res => res.json())
-    .then(response => {
-      if (response.status === "success") {
-        // Hide form
-        form.style.display = "none";
-        // Show thank you message with correct data
-        document.getElementById("thankyouMsg").style.display = "block";
-        document.getElementById("thankyouMsg").innerHTML =
-          `<h3>Thank you, ${response.name}!</h3><p>Your phone: ${response.phone}</p>`;
-      } else {
-        alert("Error: " + response.message);
-      }
-    })
-    .catch(err => {
-      alert("Error submitting form: " + err);
-    });
-  });
-</script>
+    }).then(res => console.log("Submitted to Google Sheets"))
+      .catch(err => console.error("Error:", err));
+  </script>
 </body>
 </html>
