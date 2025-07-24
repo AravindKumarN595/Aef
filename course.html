@@ -76,10 +76,11 @@
 
     const formData = {
       name: this.name.value,
-      phone: this.phone.value
+      phone: this.phone.value,
+      course: this.course.value
     };
 
-    fetch("YOUR_SCRIPT_URL", {
+    fetch("https://script.google.com/macros/s/AKfycbxMopS1tm-JK05BGezvQq617MJj2gCnsIxxdISFZAdLaA1fBCqB49w79da_XGbJ0c6p/exec", {
       method: "POST",
       body: JSON.stringify(formData),
       headers: {
